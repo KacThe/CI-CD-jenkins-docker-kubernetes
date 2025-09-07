@@ -15,5 +15,7 @@ Complete CI/CD pipeline with **Jenkins + Docker + Kubernetes (Minikube)** for au
    `minikube start`  
 3. Configure Jenkins **Multibranch Pipeline**: create a Multibranch Pipeline project in Jenkins, connect it to your **GitHub repository URL**, add **credentials** (Personal Access Token with `repo` permissions) so Jenkins can authenticate with GitHub and avoid API rate limiting. Jenkins will automatically scan branches with a `Jenkinsfile` and create build jobs per branch.
 
+![alt text](<Untitled Diagram.drawio.png>)
+
 ## How It Works
 Jenkins checks out your application and pipeline code from GitHub. It builds a **Docker image** using the `Dockerfile` stored in the repo. The image is pushed to **Docker Hub**. Jenkins updates the **Kubernetes manifest** with the new image tag. Jenkins then deploys the application to the local Kubernetes cluster running on **Minikube**. Finally, Minikube runs the containerized app and exposes it via a **NodePort service** for external access.
